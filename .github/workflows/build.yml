@@ -1,0 +1,22 @@
+﻿on:
+  push
+
+jobs:
+  Build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: build
+        run: dotnet build -c Release
+  Test:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: build
+        run: dotnet test -c Release
+  Publish:
+    runs-on: ubuntu-24.04
+    if: contains(github.ref, 'refs/tags/v')
+    steps:
+      - name: Pack
+        run: dotnet pack -o ./
+      - name: Nuget
+        run: dotnet nuget push *.nupkg
