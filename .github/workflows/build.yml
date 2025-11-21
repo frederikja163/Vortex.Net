@@ -11,6 +11,7 @@ jobs:
   Test:
     runs-on: ubuntu-24.04
     steps:
+      - uses: actions/checkout@v4
       - name: build
         run: dotnet test -c Release
   Publish:
