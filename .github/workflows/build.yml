@@ -22,4 +22,6 @@ jobs:
       - name: Pack
         run: dotnet pack -o ./
       - name: Nuget
-        run: dotnet nuget push *.nupkg
+        run: dotnet nuget push *.nupkg --api-key ${GITHUB_TOKEN}
+        env:
+          GITHUB_TOKEN: ${{ secrets.NUGETSECRET }}
