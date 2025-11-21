@@ -1,4 +1,4 @@
-﻿namespace Vortex;
+﻿namespace Vortex.Net;
 
 /// The variant tag for a Vortex data type.
 public enum VxDTypeVariant

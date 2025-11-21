@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Vortex;
+namespace Vortex.Net;
 
 /// <summary>
 /// Options supplied for opening a file.

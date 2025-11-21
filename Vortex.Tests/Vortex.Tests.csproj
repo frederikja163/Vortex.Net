@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Vortex\Vortex.csproj" />
+      <ProjectReference Include="..\Vortex.Net\Vortex.Net.csproj" />
     </ItemGroup>
 
 </Project>

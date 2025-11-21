@@ -1,4 +1,4 @@
-﻿namespace Vortex;
+﻿namespace Vortex.Net;
 
 /// <summary>
 /// <para>
@@ -36,7 +36,7 @@ public readonly struct VxDType : IDisposable
 {
     private readonly IntPtr _handle = IntPtr.Zero;
 
-    public static VxDType Zero { get; } = default;
+    public static VxDType Zero { get; } = IntPtr.Zero;
     
     private VxDType(IntPtr handle)
     {

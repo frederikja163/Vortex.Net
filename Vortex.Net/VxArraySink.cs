@@ -1,4 +1,4 @@
-﻿namespace Vortex;
+﻿namespace Vortex.Net;
 
 /// <summary>
 /// <para>
@@ -18,11 +18,11 @@
 /// called exactly once after all `push` operations are complete.
 /// </para>
 /// </summary>
-public readonly struct VxArraySink
+public readonly struct VxArraySink : IDisposable
 {
     private readonly IntPtr _handle = IntPtr.Zero;
 
-    public static VxArraySink Zero { get; } = default;
+    public static VxArraySink Zero { get; } = IntPtr.Zero;
 
     private VxArraySink(IntPtr handle)
     {
@@ -31,4 +31,11 @@ public readonly struct VxArraySink
 
     public static implicit operator IntPtr(VxArraySink value) => value._handle;
     public static implicit operator VxArraySink(IntPtr value) => new(value);
+
+    public void Dispose()
+    {
+        VxError error = new VxError();
+        this.Close(ref error);
+        error.Dispose();
+    }
 }

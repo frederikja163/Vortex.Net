@@ -1,4 +1,4 @@
-﻿namespace Vortex;
+﻿namespace Vortex.Net;
 
 /// <summary>
 /// Strings for use within Vortex.
@@ -7,7 +7,7 @@ public readonly struct VxString : IDisposable
 {
     private readonly IntPtr _handle = IntPtr.Zero;
 
-    public static VxString Zero { get; } = default;
+    public static VxString Zero { get; } = IntPtr.Zero;
 
     private VxString(IntPtr handle)
     {
@@ -25,10 +25,5 @@ public readonly struct VxString : IDisposable
     public void Dispose()
     {
         this.Free();
-    }
-
-    public override string ToString()
-    {
-        return this.Ptr();
     }
 }

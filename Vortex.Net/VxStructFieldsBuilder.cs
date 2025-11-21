@@ -1,4 +1,4 @@
-﻿namespace Vortex;
+﻿namespace Vortex.Net;
 
 /// <summary>
 /// Builder for creating a <see cref="VxStructFields"/>.
@@ -7,7 +7,12 @@ public readonly struct VxStructFieldsBuilder : IDisposable
 {
     private readonly IntPtr _handle = IntPtr.Zero;
 
-    public static VxStructFieldsBuilder Zero { get; } = default;
+    public static VxStructFieldsBuilder Zero { get; } = IntPtr.Zero;
+
+    public VxStructFieldsBuilder()
+    {
+        _handle = Vx.NewFieldBuilder();
+    }
 
     private VxStructFieldsBuilder(IntPtr handle)
     {

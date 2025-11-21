@@ -1,4 +1,4 @@
-﻿namespace Vortex;
+﻿namespace Vortex.Net;
 
 /// <summary>
 /// Represents a Vortex struct data type, without top-level nullability.
@@ -7,7 +7,7 @@ public readonly struct VxStructFields : IDisposable
 {
     private readonly IntPtr _handle = IntPtr.Zero;
 
-    public static VxStructFields Zero { get; } = default;
+    public static VxStructFields Zero { get; } = IntPtr.Zero;
 
     private VxStructFields(IntPtr handle)
     {

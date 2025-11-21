@@ -1,4 +1,4 @@
-﻿namespace Vortex;
+﻿namespace Vortex.Net;
 
 /// Log levels for the Vortex library.
 public enum VxLogLevel

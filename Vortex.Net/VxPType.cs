@@ -1,4 +1,4 @@
-﻿namespace Vortex;
+﻿namespace Vortex.Net;
 
 /// Variant enum for Vortex primitive types.
 public enum VxPType

@@ -1,4 +1,4 @@
-﻿namespace Vortex;
+﻿namespace Vortex.Net;
 
 /// <summary>
 /// <para>
@@ -21,7 +21,7 @@ public readonly struct VxArrayIterator : IDisposable
 {
     private readonly IntPtr _handle = IntPtr.Zero;
 
-    public static VxArrayIterator Zero { get; } = default;
+    public static VxArrayIterator Zero { get; } = IntPtr.Zero;
 
     private VxArrayIterator(IntPtr handle)
     {

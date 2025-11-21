@@ -1,11 +1,11 @@
-﻿namespace Vortex;
+﻿namespace Vortex.Net;
 
 /// Whether an instance of a DType can be `null or not
 public readonly struct VxNullability
 {
     private readonly IntPtr _handle = IntPtr.Zero;
 
-    public static VxNullability Zero { get; } = default;
+    public static VxNullability Zero { get; } = IntPtr.Zero;
 
     private VxNullability(IntPtr handle)
     {

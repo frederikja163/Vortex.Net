@@ -1,4 +1,4 @@
-﻿namespace Vortex;
+﻿namespace Vortex.Net;
 
 /// <summary>
 /// <para>
@@ -19,7 +19,7 @@ public readonly unsafe struct VxArray : IDisposable
 {
     private readonly IntPtr _handle = IntPtr.Zero;
 
-    public static VxArray Zero { get; } = default;
+    public static VxArray Zero { get; } = IntPtr.Zero;
 
     private VxArray(IntPtr handle)
     {
@@ -33,88 +33,88 @@ public readonly unsafe struct VxArray : IDisposable
 
     public VxArray(sbyte?[] data)
     {
-        _handle = PrimitiveNullable(data, Vx.PrimitiveArrayNew);
+        _handle = PrimitiveNullable(data, Vx.ArrayPrimitiveNew);
     }
     public VxArray(byte?[] data)
     {
-        _handle = PrimitiveNullable(data, Vx.PrimitiveArrayNew);
+        _handle = PrimitiveNullable(data, Vx.ArrayPrimitiveNew);
     }
     public VxArray(short?[] data)
     {
-        _handle = PrimitiveNullable(data, Vx.PrimitiveArrayNew);
+        _handle = PrimitiveNullable(data, Vx.ArrayPrimitiveNew);
     }
     public VxArray(ushort?[] data)
     {
-        _handle = PrimitiveNullable(data, Vx.PrimitiveArrayNew);
+        _handle = PrimitiveNullable(data, Vx.ArrayPrimitiveNew);
     }
     public VxArray(int?[] data)
     {
-        _handle = PrimitiveNullable(data, Vx.PrimitiveArrayNew);
+        _handle = PrimitiveNullable(data, Vx.ArrayPrimitiveNew);
     }
     public VxArray(uint?[] data)
     {
-        _handle = PrimitiveNullable(data, Vx.PrimitiveArrayNew);
+        _handle = PrimitiveNullable(data, Vx.ArrayPrimitiveNew);
     }
     public VxArray(long?[] data)
     {
-        _handle = PrimitiveNullable(data, Vx.PrimitiveArrayNew);
+        _handle = PrimitiveNullable(data, Vx.ArrayPrimitiveNew);
     }
     public VxArray(ulong?[] data)
     {
-        _handle = PrimitiveNullable(data, Vx.PrimitiveArrayNew);
+        _handle = PrimitiveNullable(data, Vx.ArrayPrimitiveNew);
     }
     public VxArray(float?[] data)
     {
-        _handle = PrimitiveNullable(data, Vx.PrimitiveArrayNew);
+        _handle = PrimitiveNullable(data, Vx.ArrayPrimitiveNew);
     }
     public VxArray(double?[] data)
     {
-        _handle = PrimitiveNullable(data, Vx.PrimitiveArrayNew);
+        _handle = PrimitiveNullable(data, Vx.ArrayPrimitiveNew);
     }
 
     public VxArray(sbyte[] data)
     {
-        _handle = Primitive(data, Vx.PrimitiveArrayNew);
+        _handle = Primitive(data, Vx.ArrayPrimitiveNew);
     }
     public VxArray(byte[] data)
     {
-        _handle = Primitive(data, Vx.PrimitiveArrayNew);
+        _handle = Primitive(data, Vx.ArrayPrimitiveNew);
     }
     public VxArray(short[] data)
     {
-        _handle = Primitive(data, Vx.PrimitiveArrayNew);
+        _handle = Primitive(data, Vx.ArrayPrimitiveNew);
     }
     public VxArray(ushort[] data)
     {
-        _handle = Primitive(data, Vx.PrimitiveArrayNew);
+        _handle = Primitive(data, Vx.ArrayPrimitiveNew);
     }
     public VxArray(int[] data)
     {
-        _handle = Primitive(data, Vx.PrimitiveArrayNew);
+        _handle = Primitive(data, Vx.ArrayPrimitiveNew);
     }
     public VxArray(uint[] data)
     {
-        _handle = Primitive(data, Vx.PrimitiveArrayNew);
+        _handle = Primitive(data, Vx.ArrayPrimitiveNew);
     }
     public VxArray(long[] data)
     {
-        _handle = Primitive(data, Vx.PrimitiveArrayNew);
+        _handle = Primitive(data, Vx.ArrayPrimitiveNew);
     }
     public VxArray(ulong[] data)
     {
-        _handle = Primitive(data, Vx.PrimitiveArrayNew);
+        _handle = Primitive(data, Vx.ArrayPrimitiveNew);
     }
     public VxArray(float[] data)
     {
-        _handle = Primitive(data, Vx.PrimitiveArrayNew);
+        _handle = Primitive(data, Vx.ArrayPrimitiveNew);
     }
     public VxArray(double[] data)
     {
-        _handle = Primitive(data, Vx.PrimitiveArrayNew);
+        _handle = Primitive(data, Vx.ArrayPrimitiveNew);
     }
 
-    private delegate VxArray PrimitiveArrayNewDelegate<T>(in T data, nuint length, IntPtr validity, ref VxError error) where T : unmanaged;
-    private VxArray PrimitiveNullable<T>(T?[] data, PrimitiveArrayNewDelegate<T> nativeFunction) where T : unmanaged
+    private delegate VxArray ArrayPrimitiveNewDelegate<T>(in T data, nuint length, IntPtr validity, ref VxError error) where T : unmanaged;
+    private VxArray PrimitiveNullable<T>(T?[] data, ArrayPrimitiveNewDelegate<T> nativeFunction) where T : unmanaged
     {
         
         Span<T> dataSpan = data.Length < 255 ? stackalloc T[data.Length] : new T[data.Length];
@@ -134,7 +134,7 @@ public readonly unsafe struct VxArray : IDisposable
         error.Dispose();
         return array;
     } 
-    private VxArray Primitive<T>(T[] data, PrimitiveArrayNewDelegate<T> nativeFunction) where T : unmanaged
+    private VxArray Primitive<T>(T[] data, ArrayPrimitiveNewDelegate<T> nativeFunction) where T : unmanaged
     {
         VxError error = new VxError();
         VxArray array = nativeFunction(data[0], (nuint)data.Length, IntPtr.Zero, ref error);

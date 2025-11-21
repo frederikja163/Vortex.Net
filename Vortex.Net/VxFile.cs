@@ -1,4 +1,4 @@
-﻿namespace Vortex;
+﻿namespace Vortex.Net;
 
 /// <summary>
 /// A handle to a Vortex file encapsulating the footer and logic for instantiating a reader.
@@ -7,7 +7,7 @@ public readonly struct VxFile : IDisposable
 {
     private readonly IntPtr _handle = IntPtr.Zero;
 
-    public static VxFile Zero { get; } = default;
+    public static VxFile Zero { get; } = IntPtr.Zero;
 
     private VxFile(IntPtr handle)
     {

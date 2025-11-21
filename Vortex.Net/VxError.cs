@@ -1,4 +1,4 @@
-﻿namespace Vortex;
+﻿namespace Vortex.Net;
 
 /// <summary>
 /// The error structure populated by fallible Vortex C functions.
@@ -7,7 +7,7 @@ public readonly struct VxError : IDisposable
 {
     private readonly IntPtr _handle = IntPtr.Zero;
 
-    public static VxError Zero { get; } = default;
+    public static VxError Zero { get; } = IntPtr.Zero;
 
     private VxError(IntPtr handle)
     {
@@ -29,13 +29,8 @@ public readonly struct VxError : IDisposable
             return;
         }
 
-        string message = ToString();
+        string message = this.GetMessage().Ptr();
         this.Free();
         throw new Exception("Vortex exception: " + message);
-    }
-
-    public override string ToString()
-    {
-        return this.GetMessage().ToString() ?? "";
     }
 }

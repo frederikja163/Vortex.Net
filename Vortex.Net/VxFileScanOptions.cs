@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Vortex;
+namespace Vortex.Net;
 
 public struct VxFileScanOptions : IDisposable
 {

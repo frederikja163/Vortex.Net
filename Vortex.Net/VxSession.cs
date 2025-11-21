@@ -1,4 +1,4 @@
-﻿namespace Vortex;
+﻿namespace Vortex.Net;
 
 /// <summary>
 /// A handle to a Vortex session.
@@ -7,7 +7,7 @@ public readonly struct VxSession : IDisposable
 {
     private readonly IntPtr _handle = IntPtr.Zero;
 
-    public static VxSession Zero { get; } = default;
+    public static VxSession Zero { get; } = IntPtr.Zero;
 
     private VxSession(IntPtr handle)
     {
