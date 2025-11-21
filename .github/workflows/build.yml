@@ -22,6 +22,6 @@ jobs:
       - name: Pack
         run: dotnet pack -o ./
       - name: Nuget
-        run: dotnet nuget push *.nupkg --api-key ${NUGETSECRET}
+        run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGETSECRET}
         env:
           NUGETSECRET: ${{ secrets.NUGETSECRET }}
