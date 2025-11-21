@@ -5,6 +5,7 @@ jobs:
   Build:
     runs-on: ubuntu-24.04
     steps:
+      - uses: actions/checkout@v4
       - name: build
         run: dotnet build -c Release
   Test:
@@ -16,6 +17,7 @@ jobs:
     runs-on: ubuntu-24.04
     if: contains(github.ref, 'refs/tags/v')
     steps:
+      - uses: actions/checkout@v4
       - name: Pack
         run: dotnet pack -o ./
       - name: Nuget
