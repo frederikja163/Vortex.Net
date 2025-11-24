@@ -182,6 +182,59 @@ public static unsafe partial class Vx
     /// Returns a new array, or null on error.
     [LibraryImport("vortex_ffi", EntryPoint = "vx_array_primitive_new_f64")]
     public static partial VxArray ArrayPrimitiveNew(in double data, nuint length, IntPtr validity, ref VxError error);
+
+    /// Create a new boolean array from raw data.<br/>
+    /// The `data` pointer must point to a valid array of `len` booleans.<br/>
+    /// The `validity` pointer, if not null, must point to a valid array of `len` booleans.<br/>
+    /// If `validity` is null, the array is assumed to have no null values.<br/>
+    /// Returns a new array, or null on error.
+    [LibraryImport("vortex_ffi", EntryPoint = "vx_array_bool_new")]
+    public static partial VxArray ArrayBoolNew([MarshalAs(UnmanagedType.Bool)] in bool data, nuint length, IntPtr validity, ref VxError error);
+
+    /// Create a new null array with the given length. <br/>
+    /// All values in a null array are null by definition.
+    [LibraryImport("vortex_ffi", EntryPoint = "vx_array_null_new")]
+    public static partial VxArray ArrayNullNew(nuint length);
+
+    /// Create a new UTF8 array builder.
+    [LibraryImport("vortex_ffi", EntryPoint = "vx_array_utf8_builder_new")]
+    public static partial VxVarBinViewBuilder ArrayUtf8BuilderNew([MarshalAs(UnmanagedType.Bool)] bool nullable);
+    
+    
+    /// Create a new Binary array builder.
+    [LibraryImport("vortex_ffi", EntryPoint = "vx_array_binary_builder_new")]
+    public static partial VxVarBinViewBuilder ArrayBinaryBuilderNew([MarshalAs(UnmanagedType.Bool)] bool nullable);
+    
+    /// Append a UTF8 string to the builder. <br/>
+    /// The `value` pointer must point to a valid UTF-8 string of `len` bytes. <br/>
+    /// This function takes ownership of neither the builder nor the string data.
+    [LibraryImport("vortex_ffi", EntryPoint = "vx_varbinview_builder_append_utf8")]
+    public static partial void AppendUtf8(this VxVarBinViewBuilder binViewBuilder, [MarshalAs(UnmanagedType.LPUTF8Str)] string str, nuint length, ref VxError error);
+    
+    /// Append a binary value to the builder. <br/>
+    /// The `value` pointer must point to a valid array of `len` bytes. <br/>
+    /// This function takes ownership of neither the builder nor the binary data.
+    [LibraryImport("vortex_ffi", EntryPoint = "vx_varbinview_builder_append_binary")]
+    public static partial void AppendBinary(this VxVarBinViewBuilder binViewBuilder, in byte str, nuint length, ref VxError error);
+    
+    /// Append a null value to the builder.
+    [LibraryImport("vortex_ffi", EntryPoint = "vx_varbinview_builder_append_null")]
+    public static partial void AppendNull(this VxVarBinViewBuilder binViewBuilder);
+    
+    /// Append a null value to the builder.
+    [LibraryImport("vortex_ffi", EntryPoint = "vx_varbinview_builder_finish")]
+    public static partial VxArray Finish(this VxVarBinViewBuilder binViewBuilder);
+
+    /// Create a new struct array from field arrays. <br/>
+    /// The `dtype` must be a struct dtype created with `vx_dtype_struct`. <br/>
+    /// The `field_arrays` pointer must point to an array of `n_fields` array pointers. <br/>
+    /// The `len` parameter specifies the length of each field array. <br/>
+    /// The `validity` pointer, if not null, must point to a valid array of `len` booleans. <br/>
+    /// This function does NOT take ownership of the field arrays. <br/>
+    /// Returns a new array, or null on error.
+    [LibraryImport("vortex_ffi", EntryPoint = "vx_array_struct_new")]
+    public static partial VxArray ArrayStructNew(VxDType dtype, in VxArray vxArray, nuint len, IntPtr validity,
+        ref VxError error);
     
     /// Write the UTF-8 string at `index` in the array into the provided destination buffer,
     /// recording the length in `len`.
