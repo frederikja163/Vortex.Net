@@ -5,6 +5,9 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <AssemblyVersion>1.0.1</AssemblyVersion>
+        <RepositoryUrl>https://github.com/frederikja163/Vortex.Net</RepositoryUrl>
+        <Description>Bindings for the vortex file format.</Description>
     </PropertyGroup>
 
     <ItemGroup>
