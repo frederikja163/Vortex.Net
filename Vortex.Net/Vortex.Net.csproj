@@ -6,6 +6,7 @@
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <AssemblyVersion>1.0.1</AssemblyVersion>
+        <Version>1.0.1</Version>
         <RepositoryUrl>https://github.com/frederikja163/Vortex.Net</RepositoryUrl>
         <Description>Bindings for the vortex file format.</Description>
     </PropertyGroup>
